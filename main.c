@@ -19,7 +19,7 @@ int    main(void)
     int     fd;
     char    *line = malloc(1 * sizeof(char));
 
-    fd = open("test.txt", 256);
+    fd = open("test.txt", BUFFER_SIZE);
     while(line != NULL)
     {
         free(line);
