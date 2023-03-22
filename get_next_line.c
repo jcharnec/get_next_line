@@ -12,18 +12,75 @@
 
 #include "get_next_line.h"
 
+// Se libera la memoria del puntero asignada con malloc y lo pone a NULL.
+void	free_ptr(char **ptr)
+{
+	if (*ptr != NULL)
+	{
+		free(*ptr);
+		ptr = NULL;
+	}
+}
+
+char	*join_line(int nl_position, char **buffer)
+{
+	char	*res;
+	char	*tmp;
+
+	tmp = NULL;
+	if (nl_position <= 0 )
+	{
+		if (**buffer == '\0')
+		{
+			free(*buffer);
+			*buffer = NULL;
+			return (NULL);
+		}
+		res = *buffer;
+		*buffer = NULL;
+		return (res);
+	}
+	tmp = ft_substr(*buffer, nl_position, BUFFER_SIZE);
+	res = *buffer;
+	res[nl_position] = 0;
+	*buffer = tmp;
+	return (res);
+}
+
+char	*read_line(int fd, char **buffer, char *read_return)
+{
+	ssize_t	bytes_read;
+	char	*tmp;
+	char	*nl;
+
+	nl = ft_strchr(*buffer, '\n');
+	tmp = NULL;
+	bytes_read = 0;
+	while (nl == NULL)
+	{
+		bytes_read = read(fd, read_return, BUFFER_SIZE);
+		if (bytes_read <= 0)
+			return (join_line(bytes_read, buffer));
+		read_return[bytes_read] = 0;
+		tmp = ft_strjoin(*buffer, read_return);
+		free_ptr(buffer);
+		*buffer = tmp;
+		nl = ft_strchr(*buffer, '\n');
+	}
+	return (join_line(nl - *buffer + 1, buffer));
+}
+
 // Esta función lee una línea de un archivo o de stdin usando un tamaño de 
 // búfer definido por una macro BUFFER_SIZE.
-void *get_next_line (const int fd)
+char *get_next_line(int fd)
 {
-    // Se declara una variable estatica llamada buffer que es 
-    // un array de punteros a char. Esta variable se usa para guardar el contenido 
+    // Se declara un array estatico com buffer. Se usa para guardar el contenido 
     // del archivo que se lee entre llamadas a la funcion. 
     // El tamaño del array es MAX_FD + 1, que es una constante que define el numero 
-    // máximo de file descriptors posibles.
+    // máximo de fd posibles.
     static char *buffer[MAX_FD + 1];
     // Variable para guardar el resultado de la funcion read que lee  del archivo o stdin.
-    char        *line;
+    char        *read_resu;
     // Variable para guardar la línea final que se va a devolver al final de la funcion.
     char        *final;
     // Comprueba si el file descriptor es valido.
@@ -31,8 +88,8 @@ void *get_next_line (const int fd)
         return (NULL);
     // Reservamos memoria para la variable assignando el espacio demandado en BUFFER_SIZE + 1
     // para guardar el caracter \0.
-    line = (char*)malloc(sizeof(char) * BUFFER_SIZE + 1);
-    if (line == NULL)
+    read_resu = (char*)malloc(sizeof(char) * BUFFER_SIZE + 1);
+    if (read_resu == NULL)
         return (NULL);
     // Se comprueba si el buffer del file descriptor está vacío. Si lo está, lo inicializa 
     // con una cadena vacía con ft_strdup, que es una función 
@@ -40,8 +97,7 @@ void *get_next_line (const int fd)
     if (!buffer[fd])
         buffer[fd] = ft_strdup("");
     // Llama a la función read_line que recibe como argumentos el fd, un puntero al elemento del array buffer correspondiente al fd y la variable read_return. Esta función se encarga de leer del archivo o stdin hasta encontrar un carácter ‘\n’ o llegar al final del archivo y devolver la línea leída sin el ‘\n’. También actualiza el contenido del array buffer con lo que queda por leer después del ‘\n’.
-    final = read_line(fd, &buffer[fd], read_return);
-    // función auxiliar llamada free_null que recibe como argumento un puntero al puntero read_return y libera su memoria asignada con malloc y lo pone a NULL.
-    free_line(&read_return);
+    final = read_line(fd, &buffer[fd], read_resu);
+    free_ptr(&read_resu);
     return(final);
 }

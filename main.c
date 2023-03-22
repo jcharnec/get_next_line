@@ -19,12 +19,12 @@ int    main(void)
     int     fd;
     char    *line = malloc(1 * sizeof(char));
 
-    fd = open("tests", 256);
+    fd = open("test.txt", 256);
     while(line != NULL)
     {
         free(line);
         line = get_next_line(fd);
-        printf("%s", fd);
+        printf("%s", line);
     }
     return (0);
 }

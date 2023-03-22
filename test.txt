@@ -1,0 +1,4 @@
+hola me llamo
+juan
+y esto es un 
+test para get_next_line
