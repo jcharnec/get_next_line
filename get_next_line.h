@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:26 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/21 23:09:27 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/22 14:27:05 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
-
 
 char	*get_next_line(int fd);
 char	*ft_read(int fd, char *buf, char *tmp, char *str);
