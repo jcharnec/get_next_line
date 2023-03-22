@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:26 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/22 14:27:05 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:47:22 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_next_line(int fd);
 char	*ft_read(int fd, char *buf, char *tmp, char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const	char *str);
-char	*ft_before(char *str);
+char	*ft_first_line(char *str);
 char	*ft_after(char *str);
 int		ft_newline(char *str);
 

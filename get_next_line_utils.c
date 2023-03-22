@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:13 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/22 14:26:52 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:04:16 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	*ptr = '\0';
 	return ((char *) ptr - len);
+	free (ptr);
 }
 
 size_t	ft_strlen(const	char *str)
@@ -49,4 +50,20 @@ size_t	ft_strlen(const	char *str)
 		i++;
 	}
 	return (i);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			return (&((char *)s)[i]);
+		i++;
+	}
+	if ((char)c == '\0')
+		return (&((char *)s)[i]);
+	return (0);
 }
