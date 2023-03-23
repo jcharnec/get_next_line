@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:26 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/22 18:47:22 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:03:12 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ size_t	ft_strlen(const	char *str);
 char	*ft_first_line(char *str);
 char	*ft_after(char *str);
 int		ft_newline(char *str);
+void	free_mem(char *buffer, char *str);
 
 #endif

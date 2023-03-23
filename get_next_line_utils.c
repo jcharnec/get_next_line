@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:13 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/22 18:04:16 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:08:28 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,10 @@ char	*ft_strchr(char *s, int c)
 	if ((char)c == '\0')
 		return (&((char *)s)[i]);
 	return (0);
+}
+
+void	free_mem(char *buffer, char *str)
+{
+	free (buffer);
+	free (str);
 }
