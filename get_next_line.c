@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:18 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/22 20:36:31 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:08:18 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ char	*ft_first_line(char *str)
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	if (str[0] == '\0')
-	{
 		return (NULL);
-	}
 	ptr = malloc(sizeof(char) * i + 2);
 	if (ptr == NULL)
 		return (NULL);
@@ -64,7 +62,7 @@ char	*ft_after(char *str)
 		free(str);
 		return (NULL);
 	}
-	ptr = malloc(sizeof(char) * ft_strlen(str) + 1);
+	ptr = malloc(sizeof(char) * ft_strlen(str) -j + 1);
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;
@@ -112,14 +110,14 @@ char	*ft_read(int fd, char *buffer, char *tmp, char *str)
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i == -1)
 		{
-			free (buffer);
+			free_mem(buffer, str);
 			return (NULL);
 		}
 		buffer[i] = '\0';
 		tmp = str;
 		if (tmp == NULL)
 		{
-			tmp = malloc(sizeof(char) * 1);
+			tmp = malloc(sizeof(char));
 			tmp[0] = '\0';
 		}
 		str = ft_strjoin(tmp, buffer);
@@ -146,7 +144,7 @@ char	*get_next_line(int fd)
 	tmp = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = malloc(BUFFER_SIZE + 1);
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	str = ft_read(fd, buffer, tmp, str);
@@ -154,5 +152,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_first_line(str);
 	str = ft_after(str);
+	if (line == NULL && str == NULL)
+	{
+		free(str);
+		return (NULL);
+	}
 	return (line);
 }
