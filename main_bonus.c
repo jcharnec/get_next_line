@@ -12,33 +12,36 @@
 
 #include "get_next_line_bonus.h"
 
-int main()
+int main(void)
 {
-	int 	fd1;
-	int 	fd2;
-	int 	fd3;
-	char    *line;
-	int		ret;
+    int fd[3];
+    char *line;
+    int i;
 
-	fd1 = open("test1.txt", O_RDONLY);
-	if (fd1 == -1)
-	{
-		perror("Error opening text1.txt");
-		return (1);
-	}
-		fd2 = open("test2.txt", O_RDONLY);
-	if (fd2 == -1)
-	{
-		perror("Error opening text2.txt");
-		close(fd1);
-		return (1);
-	}
-		fd3 = open("test3.txt", O_RDONLY);
-	if (fd3 == -1)
-	{
-		perror("Error opening text3.txt");
-		close(fd3);
-		close(fd2);
-		return (1);
-	}
+    // Abrir los archivos de lectura
+    fd[0] = open("text1.txt", O_RDONLY);
+    fd[1] = open("text2.txt", O_RDONLY);
+    fd[2] = open("text3.txt", O_RDONLY);
+
+    // Leer una línea de cada archivo de forma alterna
+    while (1)
+    {
+        for (i = 0; i < 3; i++)
+        {
+            line = get_next_line(fd[i]);
+            if (line == NULL)
+                break;
+            printf("Linea leida del fd %d: %s", i + 1, line);
+            free(line);
+        }
+		printf ("\n");
+        if (line == NULL) // Salir del bucle si se ha terminado algun archivo o ha habido un error
+            break;
+    }
+
+    // Cerrar los archivos
+    for (i = 0; i < 3; i++)
+        close(fd[i]);
+
+    return (0);
 }

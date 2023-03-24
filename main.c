@@ -27,5 +27,6 @@ int	main(void)
 		line = get_next_line(fd);
 		printf("%s", line);
 	}
+	close (fd);
 	return (0);
 }
