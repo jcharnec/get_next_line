@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:18 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/23 13:08:18 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:44:09 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ char	*ft_first_line(char *str)
 	return (ptr);
 }
 
-// Funcion para obtener la cadena despues de '\n', Declaramos 3 variables, 
-// i para contar el numero de caracteres j para buscar el primer '\n' y ptr 
+// Funcion para obtener la cadena despues de '\n', Declaramo 3 variables, 
+// i para contar el numero de caracteres, j para buscar el primer '\n' y ptr 
 // para guardar el contenido despues de '\n'
-char	*ft_after(char *str)
+char	*ft_last_line(char *str)
 {
 	int		i;
 	int		j;
@@ -92,7 +92,7 @@ int	ft_newline(char *str)
 	return (0);
 }
 
-// Funcion que sirve para leer el archivo, inicializamos i en 1 para 
+// Funcion que sirve para leer el archivo, inicializo i en 1 para 
 // cotrolar el bucle de lectura, con un bucle controlamos llegar al
 // final del archivo a leer, guardamos en i el numero de bytes
 // del descriptor. Assignamos '\0' al buffer y guardamos el str
@@ -129,7 +129,7 @@ char	*ft_read(int fd, char *buffer, char *tmp, char *str)
 	return (str);
 }
 
-// Creamos las variables str para guardar los caracteres leidos
+// Creo las variables str para guardar los caracteres leidos,
 // buffer para almacenar el bufer de lectura, line para la linea
 // resultante y tmp para copiar str.
 // Guardamos el resultado de la funcion ft_read, lee el archivo y
@@ -151,7 +151,7 @@ char	*get_next_line(int fd)
 	if (str == NULL)
 		return (NULL);
 	line = ft_first_line(str);
-	str = ft_after(str);
+	str = ft_last_line(str);
 	if (line == NULL && str == NULL)
 	{
 		free(str);

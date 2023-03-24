@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:26 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/23 13:03:12 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:39:15 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_read(int fd, char *buf, char *tmp, char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const	char *str);
 char	*ft_first_line(char *str);
-char	*ft_after(char *str);
+char	*ft_last_line(char *str);
 int		ft_newline(char *str);
 void	free_mem(char *buffer, char *str);
 
