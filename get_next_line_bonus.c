@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:56:06 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/24 13:22:30 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:55:08 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ char	*ft_read(int fd, char *buffer, char *tmp, char *str)
 	return (str);
 }
 
-// Creo las variables str para guardar los caracteres leidos,
+// Creo las variables str como array y poder llamar distintos descriptores,
+// para guardar los caracteres leidos,
 // buffer para almacenar el bufer de lectura, line para la linea
 // resultante y tmp para copiar str.
 // Guardamos el resultado de la funcion ft_read, lee el archivo y
