@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:18 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/27 21:58:09 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:02:49 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_last_line(char *str)
 		free(str);
 		return (NULL);
 	}
-	ptr = malloc(sizeof(char) * (ft_strlen(str) -j));
+	ptr = malloc(sizeof(char) * (ft_strlen(str) -j + 1));
 	if (ptr == NULL)
 		return (NULL);
 	j += 1;
