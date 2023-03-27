@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:18 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/27 16:21:09 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:22:23 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_first_line(char *str)
 		i++;
 	if (str[0] == '\0')
 		return (NULL);
-	ptr = malloc(sizeof(char) * (i + 2));
+	ptr = (char *)malloc(sizeof(char) * (i + 2));
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;
@@ -53,6 +53,7 @@ char	*ft_last_line(char *str)
 	char	*ptr;
 
 	j = 0;
+	i = 0;
 	if (str == NULL)
 		return (NULL);
 	while (str[j] != '\n' && str[j] != '\0')
@@ -62,10 +63,9 @@ char	*ft_last_line(char *str)
 		free(str);
 		return (NULL);
 	}
-	ptr = malloc(sizeof(char) * ft_strlen(str) -j);
+	ptr = malloc(sizeof(char) * (ft_strlen(str) -j + 1));
 	if (ptr == NULL)
 		return (NULL);
-	i = 0;
 	j += 1;
 	while (str[j] != '\0')
 		ptr[i++] = str[j++];
@@ -110,16 +110,13 @@ char	*ft_read(int fd, char *buffer, char *tmp, char *str)
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i == -1)
 		{
-			free_mem(buffer, str);
+			free_mem(buffer, tmp, str);
 			return (NULL);
 		}
 		buffer[i] = '\0';
 		tmp = str;
 		if (tmp == NULL)
-		{
-			tmp = malloc(sizeof(char));
-			tmp[0] = '\0';
-		}
+			tmp = ft_strdup("");
 		str = ft_strjoin(tmp, buffer);
 		free(tmp);
 		if (ft_newline(str) == 1)
@@ -151,6 +148,7 @@ char	*get_next_line(int fd)
 	if (str == NULL)
 		return (NULL);
 	line = ft_first_line(str);
+	tmp = str;
 	str = ft_last_line(str);
 	if (line == NULL && str == NULL)
 	{

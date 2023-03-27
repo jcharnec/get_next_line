@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:13 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/24 12:52:06 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:31:52 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,27 @@ size_t	ft_strlen(const	char *str)
 	return (i);
 }
 
-void	free_mem(char *buffer, char *str)
+void	free_mem(char *buffer, char *tmp, char *str)
 {
 	free (buffer);
+	free (tmp);
 	free (str);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
