@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:03:41 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/24 14:12:41 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:58:03 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ int main(void)
             line = get_next_line(fd[i]);
             if (line == NULL)
                 break;
-            printf("Linea leida del fd %d: %s", i + 1, line);
+            printf("Linea leida del fd %d: %s\n", i + 1, line);
             free(line);
         }
-		printf ("\n");
         if (line == NULL) // Salir del bucle si se ha terminado algun archivo o ha habido un error
             break;
     }
