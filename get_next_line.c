@@ -6,7 +6,7 @@
 /*   By: jcharnec <jcharnec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:35:18 by jcharnec          #+#    #+#             */
-/*   Updated: 2023/03/27 22:02:49 by jcharnec         ###   ########.fr       */
+/*   Updated: 2023/03/28 14:12:46 by jcharnec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,6 @@ char	*get_next_line(int fd)
 	if (str == NULL)
 		return (NULL);
 	line = ft_first_line(str);
-	tmp = str;
 	str = ft_last_line(str);
 	if (line == NULL && str == NULL)
 	{
